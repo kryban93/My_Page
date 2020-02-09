@@ -1,0 +1,222 @@
+html {
+    box-sizing: border-box;
+    font-family: "Calibri", serif !important;
+    background: #DDD;    
+}
+
+body {
+    margin: auto;
+}
+
+header {  
+    width: 100vw;   
+    border: 1px solid black;   
+    height: 30vh;
+    background: url("content/header.jpg") center no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;    
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 4em;
+    border-bottom: 1px solid black;
+}
+
+#fixed-nav {   
+    margin: 0 auto;   
+    width: 100%;
+    top: 0;    
+    z-index: 1;
+
+}
+
+#container {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    padding: 0;
+    margin: 0;
+}
+nav.scroll-nav {
+    position: fixed;
+    box-shadow: 0 5px rgba(0,0,0,0.1);
+}
+
+nav.scroll-nav li.logo {    
+    max-width: 500px;
+}
+
+ul.menu {
+    display: flex;
+    flex-direction: row; 
+    flex: 1;   
+    list-style-type: none;
+    justify-content: space-around;  
+    font-size: 2em;
+    background: #000;  
+    margin: 0;
+    padding: 0; 
+    transition: all 0.5s;  
+}
+
+ul.menu li {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.menu li a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+ul.menu .logo {   
+    display: block;
+    left: 0; 
+    max-width: 0;
+    overflow: hidden;
+    background: white;
+    transition: all .5s;
+    font-weight: 600;
+    font-size: 1em;   
+}
+ul.menu .logo a {
+    color: black;
+}
+
+
+
+#about {
+    border: 1px solid black;
+    display: grid; 
+    grid-template-columns: 20vw 40vw;
+    grid-template-rows: auto;
+    grid-template-areas:  
+        "leftimage header"
+        "leftimage text"
+        "leftimage .";    
+    height: 70vh;
+
+    background: grey;
+    color: white;
+    padding: 100px;
+}
+
+.stsec-left-image {
+    grid-area: leftimage;
+    border-radius: 5px 100px 60px 100px;
+}
+
+.stsec-header {
+    grid-area: header;
+}
+
+.stsec-text {
+    grid-area: text;
+}
+
+#skills {
+    background: grey;
+    height: 120vh; 
+    text-align: center;
+    padding: 100px;
+}
+
+.skills-list {
+    list-style: none;
+
+}
+.skills-element {
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.progress {
+    height: 40px;
+    width: 70%;
+    background: #DDD;
+    border-radius: 5px;
+}
+
+ .progress-bar {  
+    height: 40px;    
+    background-color: #222;
+    border-radius: 5px;
+    width: 0%;
+    transition:width 1s;
+   
+}
+
+#experience {
+    background: grey;
+    height: 100vh;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.timeline {  
+    position: relative;        
+    display: grid; 
+    grid-template-columns: 30vw 30vw;
+    grid-template-rows: auto;
+    grid-template-areas:  
+        "left-content ."
+        ". right-content";           
+    
+}
+
+.timeline .left-content {
+    grid-area: left-content;
+    border-right: 3px solid black;
+    text-align: right;
+    padding: 10px;
+}
+.timeline .right-content {
+    grid-area: right-content;   
+    box-shadow: -3px 0px 0px 0px black;
+    padding: 10px;
+}
+
+
+#projects {
+    height: 100vh;
+    background: white;
+}
+
+.projects-list {
+    display: grid;
+    grid-template-columns: 400px 400px 400px 400px;
+    grid-template-rows: 350px 350px 350px 350px;
+
+}
+
+.projects-list .active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1.1);
+}
+
+.projects-element {
+    margin: 20px;
+    height: 250px;
+    width: 300px;
+    background: green;
+ 
+}
+
+.project-element:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+
+#contact {
+    height: 50vh;
+    background:#BADA55;
+}
