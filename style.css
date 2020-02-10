@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
     font-family: "Calibri", serif !important;
-    background: #DDD;    
+     
 }
 
 body {
@@ -9,53 +9,79 @@ body {
 }
 
 header {  
-    width: 100vw;   
-    border: 1px solid black;   
-    height: 30vh;
-    background: url("content/header.jpg") center no-repeat;
+    width: 100%;
+    height: 90vh;    
+    background: url("content/free-photo.jpg") center no-repeat;
     background-size: cover;
     text-align: center;
-    color: white;    
+    color: #3d275c;    
 }
 
-h2 {
-    font-weight: 600;
-    font-size: 4em;
-    border-bottom: 1px solid black;
-}
-
-#fixed-nav {   
-    margin: 0 auto;   
-    width: 100%;
-    top: 0;    
-    z-index: 1;
-
+header h1 {
+    margin: 0;
+    padding: 30vh;
+    font-weight: 700;
+    font-size: 5em;
 }
 
 #container {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+#container >div {
+    width: 70%;
+    color:#3d275c;
+    height: 100vh;
+}
+
+.caption {      
+    font-weight: 600;
+    font-size: 4em;
+    border-bottom: 1px solid black;
+    left: 0px;    
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 3em;
+}
+
+h4,h5 {
+    margin:5px;
+}
+
+#fixed-nav {   
+    margin: 0;   
+    width: 100%;
+    height: 10vh;
+    top: 0;    
+    z-index: 1;    
+    background: #3d275c;
+}
+
 nav.scroll-nav {
     position: fixed;
     box-shadow: 0 5px rgba(0,0,0,0.1);
+
 }
 
 nav.scroll-nav li.logo {    
-    max-width: 500px;
+    max-width: 600px;
+    height: 100%;
 }
 
 ul.menu {
+    height: 100%;
     display: flex;
     flex-direction: row; 
     flex: 1;   
     list-style-type: none;
     justify-content: space-around;  
-    font-size: 2em;
-    background: #000;  
+    font-size: 3em;
+    font-weight: 600;
+      
     margin: 0;
     padding: 0; 
     transition: all 0.5s;  
@@ -75,8 +101,7 @@ ul.menu li a{
     cursor: pointer;
 }
 
-ul.menu .logo {   
-    display: block;
+ul.menu .logo {  
     left: 0; 
     max-width: 0;
     overflow: hidden;
@@ -86,137 +111,179 @@ ul.menu .logo {
     font-size: 1em;   
 }
 ul.menu .logo a {
-    color: black;
+    color: #3d275c;    
 }
 
-
-
-#about {
+#about {    
     border: 1px solid black;
-    display: grid; 
-    grid-template-columns: 20vw 40vw;
-    grid-template-rows: auto;
-    grid-template-areas:  
-        "leftimage header"
-        "leftimage text"
-        "leftimage .";    
-    height: 70vh;
+    display: flex;
+    }
 
-    background: grey;
-    color: white;
-    padding: 100px;
-}
-
-.stsec-left-image {
-    grid-area: leftimage;
-    border-radius: 5px 100px 60px 100px;
-}
-
-.stsec-header {
-    grid-area: header;
-}
-
-.stsec-text {
-    grid-area: text;
+.about-image {
+    height: 45vh;
+    padding: 20px;
 }
 
 #skills {
-    background: grey;
-    height: 120vh; 
-    text-align: center;
-    padding: 100px;
+    border: 1px solid black;  
 }
 
 .skills-list {
     list-style: none;
-
 }
-.skills-element {
-    font-weight: 600;
+
+.skills-element {  
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;    
+    align-items: center;
+    font-weight: 400;
     font-size: 2em;
+    margin: 30px;
 }
 
-.progress {
+.progress {    
     height: 40px;
     width: 70%;
-    background: #DDD;
-    border-radius: 5px;
+    background: #CCC;
+    border-radius: 10px;
 }
 
  .progress-bar {  
     height: 40px;    
-    background-color: #222;
-    border-radius: 5px;
+    background-color: #3d275c;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     width: 0%;
-    transition:width 1s;
-   
+    transition:width 2s;   
 }
 
-#experience {
-    background: grey;
-    height: 100vh;
-    padding-left: 100px;
-    padding-right: 100px;
+#experience { 
+    border: 1px solid black; 
 }
 
 .timeline {  
-    position: relative;        
-    display: grid; 
-    grid-template-columns: 30vw 30vw;
-    grid-template-rows: auto;
-    grid-template-areas:  
-        "left-content ."
-        ". right-content";           
-    
+    position: relative;
+    display: flex; 
+    flex-direction: column;      
 }
 
-.timeline .left-content {
-    grid-area: left-content;
-    border-right: 3px solid black;
-    text-align: right;
-    padding: 10px;
-}
-.timeline .right-content {
-    grid-area: right-content;   
-    box-shadow: -3px 0px 0px 0px black;
-    padding: 10px;
+.timeline-container {
+    display: flex;
+    align-items: flex-start;    
 }
 
+.timeline-header {       
+    font-weight: 400;
+    font-size: 3.5em;
+    margin: 0;      
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;  
+    font-weight: 300;
+    font-size: 1.2em;
+    border-left: 3px solid #3d275c;    
+}
 
 #projects {
-    height: 100vh;
-    background: white;
+    border: 1px solid black;     
 }
 
 .projects-list {
     display: grid;
-    grid-template-columns: 400px 400px 400px 400px;
-    grid-template-rows: 350px 350px 350px 350px;
-
-}
-
-.projects-list .active {
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
-    transform: scale(1.1);
+    grid-template-columns: 350px 350px 350px 350px;
+    grid-template-rows: 350px 350px;
 }
 
 .projects-element {
     margin: 20px;
     height: 250px;
     width: 300px;
-    background: green;
- 
+    background: #ddd; 
 }
 
-.project-element:hover {
-    opacity: 0.5;
+.projects-list a {
+    text-decoration: none;
+}
+
+.projects-element:hover {
+    opacity: 0.4;
     cursor: pointer;
+    transform: scale(1.1);
 }
 
+#contact {     
+    width: 100%;
+    background:#3d275c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
 
+#form {
+    width: 50%;
+    margin: auto;
+}
 
-#contact {
-    height: 50vh;
-    background:#BADA55;
+#form div {
+    margin: 30px;
+    font-size: 2em;
+}
+
+#form input,textarea {
+    background: transparent;
+    border-width: 0 0 1px 0;
+    border-color: #DDD;
+    display: block;
+    width: 100%;
+    padding: 0 12px 6px 0;
+    color: #F3F3F3;
+    margin-top: 20px;
+    
+}
+
+#form input {
+    font-size: 1em;
+    height: 35px;
+}
+
+#form textarea {
+    font-size: 15px;
+    height: 100px;
+    max-height: 200px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.button {    
+    background: transparent;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+}
+
+#footer {
+    height: 30%;
+    background: #30223b;
+    padding: 30px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5em;
+    color: white;
+}
+
+.footer-content a {
+    margin: 5px;
+    color: white;
 }

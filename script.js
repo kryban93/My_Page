@@ -6,32 +6,61 @@ const skillList = {
         {
             name:"HTML",
             percent: 70,
+            fontawesome: ["fab","fa-html5"] ,
         },
         {
             name:"CSS",
             percent: 70,
+            fontawesome: ["fab","fa-css3-alt"],
         },
         {
             name:"JavaScript",
             percent: 70,
+            fontawesome: ["fab","fa-js"],
         },
         {
             name:"React",
             percent: 20,
+            fontawesome: ["fab","fa-react"],
         },
         {
             name:"Git & Terminal",
             percent: 60,
+            fontawesome: ["fas","fa-terminal"],
         },
     ],
     lang : [
         {
             name:"English",
             percent: 85,
+            fontawesome: ["fas","fa-flag"],
         },
         {
             name:"Spanish",
             percent: 20,
+            fontawesome: ["fas","fa-flag"],
+        },
+    ]
+}
+
+const experienceList = {
+    work : [ 
+        {
+            company:"Instytute of Aviation",
+            position:"Junior Engineer",
+            info:"Tworzenie siatek elementów skończonych na podstawie modeli geometrycznych komór spalania oraz struktur komercyjnych silników turbinowych tj. LEAP, Genx, CFM, przygotowywanie modeli na potrzeby różnego rodzaju analiz mes. Wykonywanie analiz strukturalnych, modalnych, harmonicznych, Crack Propagation, LCF, HCF, P4 Capability. Dokumentowanie wyników pracy w odpowiednich systemach. Udział w projektach dotyczących wsparcia produkcji, napraw po produkcyjnych oraz wdrażania nowych produktów i technologii oraz wsparcia już pracujących silników. Prace analityczne wykonywane zgodnie z obowiązującymi Design Practices i Standard Analysis Practices.",
+        },
+        {
+            company:"Instytute of Aviation",
+            position:"Junior Engineer",
+            info:"Dokumentacja techniczna, tworzenie modeli geometrycznych części samolotu I-23 Manager na podstawie dokumentacji technicznej.",
+        },
+    ],
+    education : [
+        {
+            company:"Cracow University of Technology",
+            position:"Engineer",
+            info:'Title of Engineer Work:',
         },
     ]
 }
@@ -78,33 +107,88 @@ const projects = [
         desc:"simple description" 
     },
 ];
-let skillDiv , skillUl, nav, topOfNav,progressbar,projectsUl,projectsDiv,progressBars=[];
 
+let skillsList, nav, topOfNav,projectsList,timeline;
 
-function displaySkillList(arr) {
-    for (let i = 0; i < arr.length; i++) {
+function displaySkillList(skillsObject,header) {    
+    let h3 = document.createElement('h3');
+    h3.innerHTML = header;  
+    skillsList.appendChild(h3);
+
+    for (let i = 0; i < skillsObject.length; i++) {            
         let li = document.createElement('li'),
-            progress = document.createElement('div');
-            progressbar = document.createElement('div');
-        li.innerHTML = arr[i].name;            
-        skillUl.appendChild(li);
-        li.classList.add('skills-element'); 
+            progress = document.createElement('div'),            
+            progressbar = document.createElement('div'),
+            icon = document.createElement('i'),
+            text = document.createElement('h4');
 
-        li.appendChild(progress);
-        progress.classList.add('progress');
-
-        progress.appendChild(progressbar);
+            
+        icon.classList.add(`${skillsObject[i].fontawesome[0]}`);
+        icon.classList.add(`${skillsObject[i].fontawesome[1]}`);
+        text.innerHTML = skillsObject[i].name; 
+        li.classList.add('skills-element');
+        progress.classList.add('progress');   
+        
         progressbar.classList.add('progress-bar');
-        progressBars.push([progressbar,arr[i].percent]);
+        progressbar.dataset.percent = skillsObject[i].percent;
+
+        
+        skillsList.appendChild(li);
+        li.appendChild(icon);
+        li.appendChild(text);
+        li.appendChild(progress);
+        progress.appendChild(progressbar);        
+    }
+}
+
+function displayTimeline(experienceObject,header) {
+    let container = document.createElement('div'),    
+        activity = document.createElement('h3'),
+        content = document.createElement('div');
+
+    container.classList.add('timeline-container');
+    activity.innerHTML = header;
+    activity.classList.add('timeline-header');
+    content.classList.add('timeline-content');
+
+    timeline.appendChild(container);
+    container.appendChild(activity);
+    container.appendChild(content);
+    for (let i = 0; i < experienceObject.length; i++) {
+        let overlay = document.createElement('div'),
+            companyName = document.createElement('h4'), 
+            positionName = document.createElement('h5'),   
+            description = document.createElement('p');
+        
+        overlay.classList.add('timeline-content');
+        companyName.innerHTML = experienceObject[i].company; 
+        positionName.innerHTML = experienceObject[i].position;   
+        description.innerHTML = experienceObject[i].info;
+
+
+        content.appendChild(overlay);  
+        overlay.appendChild(companyName);
+        overlay.appendChild(positionName);    
+        overlay.appendChild(description);     
     }
 }
 
 function displayProjects() {
     for (let i = 0 ; i < projects.length; i++) {
-        let div = document.createElement('div');
-        div.innerHTML = projects[i].name;
-        div.classList.add('projects-element');
-        projectsUl.appendChild(div);
+        let overlay = document.createElement('div'),
+            mainText = document.createElement('h1'),
+            description = document.createElement('p'),  
+            link = document.createElement('a');
+        
+        overlay.classList.add('projects-element');
+        mainText.innerHTML = projects[i].name;
+        description.innerHTML = projects[i].desc;
+        link.setAttribute('href',projects[i].href);
+
+        projectsList.appendChild(link);
+        link.appendChild(overlay);
+        overlay.appendChild(mainText);
+        overlay.appendChild(description);    
     }
 }
 
@@ -118,34 +202,30 @@ function scrollNav() {
     }
 }
 
-
 function progressBarUpdate() {
-    const skillsSection = document.querySelector('#skills'); 
-
-    console.log(progressBars);
-    if (window.scrollY >= skillsSection.offsetTop) {
-        console.log("bang");
-        progressBars.forEach(progressbar => {
-            console.log(progressbar);
-            progressbar[0].style.setProperty("width", `${progressbar[1]}%`);
-
+    const skillsSection = document.querySelector('#skills'),
+        progressbars = document.querySelectorAll('.progress-bar');
+    
+    
+    if (window.scrollY >= skillsSection.offsetTop -nav.offsetHeight) { 
+        progressbars.forEach(progressbar => {
+            progressbar.style.setProperty('width',`${progressbar.dataset.percent}%`);
         });
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => { 
-    skillDiv = document.querySelector('#skills');
-    skillUl = document.querySelector('.skills-list');
     nav = document.querySelector('#fixed-nav');
     topOfNav = nav.offsetTop;
-    projectsUl = document.querySelector('.projects-list');
-    projectsDiv = document.querySelector('#projects');
-    
+    skillsList = document.querySelector('.skills-list');
+    timeline = document.querySelector('.timeline');    
+    projectsList = document.querySelector('.projects-list');        
 
-    displaySkillList(skillList.skills);
-    displaySkillList(skillList.lang);
+    displaySkillList(skillList.skills,"Programming Skills");
+    displaySkillList(skillList.lang,"Languages");
+    displayTimeline(experienceList.work,"Work");
+    displayTimeline(experienceList.education,"Education");
     displayProjects()
-
     
 });
 
