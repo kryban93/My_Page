@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>    
     <header>
-        <h1>Personal Page</h1>
-        <hr>
-        <h3>Checkout my info,skills,interests</h3>
+        <h1>Personal Page</h1>        
+        <h3></h3>
     </header>
 
     <nav id="fixed-nav">
@@ -28,61 +28,69 @@
     </nav>
 
     <div id="container">
-        <div id="about">     
-            <img src="/content/my_face.jpg" alt="My image" class="about-image">           
+        <section id="about">     
+            <img src="/content/my_face.png"  alt="My image" class="about-image">           
             <div class="text">
                 <h2 class="caption">About Me</h2>
-                <p> The should be some text about me .</p>
+                <p> Hello, my name is Krystian, I'm a junior constructor and also want to be a web developer. I learn programming by myself and from few months I spend every free minute to do it. 
+                    I'm ambicious, always open-minded, well organised and also optimist. My advantage is that I'm using analytical skills that I have learned while working as engineer and constructor.
+                    My passions are mainly games and comics, but thanks to swimming I sometimes leaves the desk.
+                    In case of any questions feel free to contant with me by any social contact I left on page. Thanks for your time.
+                </p>
             </div>
-        </div>
+        </section>
 
-        <div id="skills">
+        <section id="skills">
             <h2 class="caption">Skills & Languages</h2>   
             <ul class="skills-list"></ul> 
-        </div>            
+        </section>            
 
-        <div id="experience">
+        <section id="experience">
             <h2 class="caption">Experience</h2>                  
             <div class="timeline"> 
             </div>              
-        </div>
+        </section>
 
-        <div id="projects">
+        <section id="projects">
                 <h2 class="caption">Projects</h2>                
-                <p>There are some projects I made so far. I'm still learning everyday ;)</p>
                 <div class="projects-list"></div>
-        </div>        
+                
+                <p> These are some of projects I have made so far. I'm learning everyday so wait for some update! <br />
+                        Check also my <a href="https://www.codewars.com/users/kryban93" target="_blank">code wars profile</a> and <a href="https://www.freecodecamp.org/fccbf66c46f-4c85-4fde-b2f8-ee6cf09c2be4" target="_blank">freeCodeCamp profile</a>.
+                </p>                    
+               
+        </section>        
     </div>
-    <div id="contact">
+    <section id="contact">
         <h2 class="caption">Contact</h2>
         <form id="form" autocomplete="off" method="post">
             <div class="first-name">
-                <input id="firstname" type="text" name="firstname">
+                <input id="firstname" type="text" name="firstname" placeholder="Enter name" required minlength="3">
                 <label class="label" for="firstname">First Name*</label>                        
             </div>
             <div class="last-name">
-                <input id="lastname" type="text" name="lastname">
+                <input id="lastname" type="text" name="lastname" placeholder="Enter last-name" required minlength="3">
                 <label class="label" for="lastname">Last Name*</label>                        
             </div>
             <div class="email">
-                <input id="email" type="email" name="email">
+                <input id="email" type="email" name="email" placeholder="Enter email" required minlength="3">
                 <label class="label" for="email">Email *</label>                        
             </div>
             <div class="subject">
-                <input id="subject" type="text" name="subject">
-                <label class="label" for="subject">Last Name*</label>                        
+                <input id="subject" type="text" name="subject" placeholder="Enter subject" required minlength="3">
+                <label class="label" for="subject">Subject</label>                        
             </div>
             <div class="message">
-                <textarea id="message" name="message"></textarea>
+                <textarea id="message" name="message" placeholder="Enter message" required></textarea>
                 <label class="label" for="message">Message *</label>
             </div>
             <div class="btn-div">
-                <button type="submit" class="button btn-send">
+                <button type="button" class="button btn-send">
                     <i class="far fa-envelope"></i>SEND!
                 </button>
             </div>                    
         </form>
-    </div>
+    </section>
     <footer id="footer">
         <div class="footer-content">
             <div>
@@ -96,16 +104,16 @@
             <div>
                 <h4>Social</h4>
                 
-                <a href="" target="_blank">
+                <a href="https://www.linkedin.com/in/krystian-banot-76369017a" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="" target="_blank">
+                <a href="https://github.com/kryban93" target="_blank">
                     <i class="fab fa-github"></i>
                   </a>
-                <a href="" target="_blank">
+                <a href="https://codepen.io/kryban93" target="_blank">
                     <i class="fab fa-codepen"></i>
                 </a>
-                <a href="" target="_blank">
+                <a href="https://www.freecodecamp.org/fccbf66c46f-4c85-4fde-b2f8-ee6cf09c2be4" target="_blank">
                     <i class="fab fa-free-code-camp"></i>
                 </a>
                 
