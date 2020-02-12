@@ -48,7 +48,7 @@ const experienceList = {
         {
             company:"Instytute of Aviation 05.2019-now",
             position:"Junior Engineer",
-            info:"Responsible for complete cycle of computational simulations (models creation/modification, analyses, postprocessing, reports creation. Analyses of Aircraft Engine Combustors and surrounding Structures. Typical scope of analyses: elastic stress, elastic-plastic stress, stress with contact, LCF, crack propagation,modal, forced response (harmonic), HCF."
+            info:"Responsible for complete cycle of computational simulations (models creation and modification, analyses, postprocessing, reports creation. Analyses of Aircraft Engine Combustors and surrounding Structures. Typical scope of analyses: elastic stress, elastic-plastic stress, stress with contact, LCF, crack propagation,modal, forced response (harmonic), HCF."
                             
         },
         {
@@ -70,73 +70,91 @@ const projects = [
     {
         name:"Paint",
         href:"#",
-        desc:"simple description" 
+        desc:"Paint made in Canvas" 
     },
     {
-        name:"game",
+        name:"Game",
         href:"#",
-        desc:"simple description"  
+        desc:"Tried my best in basic collision detection"  
     },
     {
-        name:"synth",
+        name:"Speech synthesizer",
         href:"#", 
-        desc:"simple description" 
+        desc:"" 
     },
     {
-        name:"accordion",
+        name:"Accordion page",
         href:"#", 
-        desc:"simple description" 
+        desc:"" 
     },
     {
-        name:"accordion",
+        name:"Slide-in photos",
         href:"#", 
-        desc:"simple description" 
+        desc:"" 
     },
     {
-        name:"accordion",
+        name:"JS clock",
         href:"#", 
-        desc:"simple description" 
+        desc:"JS clock with customisation options" 
     },
     {
-        name:"accordion",
+        name:"Video Player",
         href:"#", 
-        desc:"simple description" 
+        desc:"Custom Video Player with JS" 
     },
     {
-        name:"accordion",
+        name:"Local storage",
         href:"#", 
-        desc:"simple description" 
+        desc:"Usage of Local storage" 
+    },
+    {
+        name:"Follow allong link",
+        href:"#", 
+        desc:"" 
+    },
+    {
+        name:"Mouse move shadow",
+        href:"#", 
+        desc:"" 
     },
 ];
 
-let skillsList, nav, topOfNav,projectsList,timeline,sendButton;
+let skillsList, nav, topOfNav,projectsList,timeline,sendButton,navigatorLogo;
 
 function displaySkillList(skillsObject,header) {    
-    let h3 = document.createElement('h3');
+    let h3 = document.createElement('h3'),
+        list = document.createElement('ul');
     h3.innerHTML = header;  
-    skillsList.appendChild(h3);
+    list.classList.add('skills__list');
 
+    skillsList.appendChild(h3);
+    skillsList.appendChild(list);
+    
     for (let i = 0; i < skillsObject.length; i++) {            
         let li = document.createElement('li'),
             progress = document.createElement('div'),            
             progressbar = document.createElement('div'),
+            percent = document.createElement('p'),
             icon = document.createElement('i'),
             text = document.createElement('h4');
             
         icon.classList.add(`${skillsObject[i].fontawesome[0]}`);
         icon.classList.add(`${skillsObject[i].fontawesome[1]}`);
+        icon.classList.add('skills__list__element__icon');
         text.innerHTML = skillsObject[i].name; 
-        li.classList.add('skills-element');
-        progress.classList.add('progress');   
-        
-        progressbar.classList.add('progress-bar');
+        li.classList.add('skills__list__element');
+        progress.classList.add('skills__list__element__progressbar');
+        percent.innerHTML = `${skillsObject[i].percent}%`;   
+        percent.classList.add('skills__list__element__progressbar__text');
+        progressbar.classList.add('skills__list__element__progressbar--covered');
         progressbar.dataset.percent = skillsObject[i].percent;
         
-        skillsList.appendChild(li);
+        list.appendChild(li);
         li.appendChild(icon);
         li.appendChild(text);
-        li.appendChild(progress);
-        progress.appendChild(progressbar);        
+        li.appendChild(progress);        
+        progress.appendChild(progressbar); 
+        progressbar.appendChild(percent);       
     }
 }
 
@@ -145,10 +163,10 @@ function displayTimeline(experienceObject,header) {
         activity = document.createElement('h3'),
         content = document.createElement('div');
 
-    container.classList.add('timeline-container');
+    container.classList.add('timeline__container');
     activity.innerHTML = header;
-    activity.classList.add('timeline-header');
-    content.classList.add('timeline-content');
+    activity.classList.add('timeline__header');
+    content.classList.add('timeline__content');
 
     timeline.appendChild(container);
     container.appendChild(activity);
@@ -159,7 +177,7 @@ function displayTimeline(experienceObject,header) {
             positionName = document.createElement('h5'),   
             description = document.createElement('p');
         
-        overlay.classList.add('timeline-content');
+        overlay.classList.add('timeline__content');
         companyName.innerHTML = experienceObject[i].company; 
         positionName.innerHTML = experienceObject[i].position;   
         description.innerHTML = experienceObject[i].info;
@@ -179,8 +197,8 @@ function displayProjects() {
             description = document.createElement('p'),  
             link = document.createElement('a');
             
-        link.classList.add('link');
-        overlay.classList.add('projects-element');
+        link.classList.add('project__list__link');
+        overlay.classList.add('projects__list__element');
         mainText.innerHTML = projects[i].name;
         description.innerHTML = projects[i].desc;
         link.setAttribute('href',projects[i].href);
@@ -196,16 +214,18 @@ function displayProjects() {
 function scrollNav() {
     if (window.scrollY >= topOfNav) {
         document.body.style.paddingTop = nav.offsetHeight + 'px';
-        nav.classList.add('scroll-nav');
+        nav.classList.add('navigator--scroll');
+        navigatorLogo.classList.add('navigator__list__logo--active');
     } else {
         document.body.style.paddingTop = 0;
-        nav.classList.remove('scroll-nav');
+        nav.classList.remove('navigator--scroll');
+        navigatorLogo.classList.remove('navigator__list__logo--active');
     }
 }
 
 function progressBarUpdate() {
     const skillsSection = document.querySelector('#skills'),
-        progressbars = document.querySelectorAll('.progress-bar');
+        progressbars = document.querySelectorAll('.skills__list__element__progressbar--covered');
     
     
     if (window.scrollY >= skillsSection.offsetTop -nav.offsetHeight) { 
@@ -237,12 +257,13 @@ function sendMessage() {
 }
 
 window.addEventListener('DOMContentLoaded', () => { 
-    nav = document.querySelector('#fixed-nav');
+    nav = document.querySelector('#navigator');
+    navigatorLogo = document.querySelector('.navigator__list__logo');
     topOfNav = nav.offsetTop;
-    skillsList = document.querySelector('.skills-list');
-    timeline = document.querySelector('.timeline');    
-    projectsList = document.querySelector('.projects-list');
-    sendButton = document.querySelector('.button');      
+    skillsList = document.querySelector('.skills__container');
+    timeline = document.querySelector('.experience__content');    
+    projectsList = document.querySelector('.projects__list');
+    sendButton = document.querySelector('.contact__btn__send');      
 
     displaySkillList(skillList.skills,"Programming Skills");
     displaySkillList(skillList.lang,"Languages");

@@ -11,27 +11,28 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>    
-    <header>
-        <h1>Personal Page</h1>        
-        <h3></h3>
+    <header class="header">
+        <h1 class="header__caption">Personal Page</h1>        
+        <h3 class="header__text">Hello! Nice to meet You, checkout some of my personal info, and my progress.</h3>
     </header>
 
-    <nav id="fixed-nav">
-        <ul class="menu">
-            <li class="logo"><a href="#"><i class="fas fa-arrow-up"></i>Hello!</a></li>
-            <li><a href="#about">ABOUT ME</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#contact">CONTACT</a></li>
+    <nav id="navigator" class="navigator">
+        <ul class="navigator__list">
+            <li class="navigator__list__logo"><a href="#" class="navigator__list__elem__link navigator__list__elem__link--pageup"><i class="fas fa-arrow-up"></i>Hello!</a></li>
+            <li class="navigator__list__elem"><a href="#about" class="navigator__list__elem__link">ABOUT ME</a></li>
+            <li class="navigator__list__elem"><a href="#skills" class="navigator__list__elem__link">SKILLS</a></li>
+            <li class="navigator__list__elem"><a href="#experience" class="navigator__list__elem__link">EXPERIENCE</a></li>
+            <li class="navigator__list__elem"><a href="#projects" class="navigator__list__elem__link">PROJECTS</a></li>
+            <li class="navigator__list__elem"><a href="#contact" class="navigator__list__elem__link">CONTACT</a></li>
         </ul>
     </nav>
 
-    <div id="container">
-        <section id="about">     
-            <img src="/content/my_face.png"  alt="My image" class="about-image">           
-            <div class="text">
-                <h2 class="caption">About Me</h2>
+    <div id="container" class="container">
+        <section id="about" class="about">     
+            <img src="/content/my_face.png"  alt="My image" class="about__image" rel="noreferrer">           
+            <div class="about__text">
+                <h1 class="caption">About Me</h1>
+                <hr>
                 <p> Hello, my name is Krystian, I'm a junior constructor and also want to be a web developer. I learn programming by myself and from few months I spend every free minute to do it. 
                     I'm ambicious, always open-minded, well organised and also optimist. My advantage is that I'm using analytical skills that I have learned while working as engineer and constructor.
                     My passions are mainly games and comics, but thanks to swimming I sometimes leaves the desk.
@@ -40,30 +41,33 @@
             </div>
         </section>
 
-        <section id="skills">
-            <h2 class="caption">Skills & Languages</h2>   
-            <ul class="skills-list"></ul> 
+        <section id="skills" class="skills">
+            <h1 class="caption">Skills & Languages</h1>
+            <hr>   
+            <div class="skills__container"></div> 
         </section>            
 
-        <section id="experience">
-            <h2 class="caption">Experience</h2>                  
-            <div class="timeline"> 
+        <section id="experience" class="experience">
+            <h1 class="caption">Experience</h1>  
+            <hr>                 
+            <div class="experience__content"> 
             </div>              
         </section>
 
-        <section id="projects">
-                <h2 class="caption">Projects</h2>                
-                <div class="projects-list"></div>
+        <section id="projects" class="projects">
+            <h1 class="caption">Projects</h1> 
+            <hr>                
+            <div class="projects__list"></div>
                 
-                <p> These are some of projects I have made so far. I'm learning everyday so wait for some update! <br />
-                        Check also my <a href="https://www.codewars.com/users/kryban93" target="_blank">code wars profile</a> and <a href="https://www.freecodecamp.org/fccbf66c46f-4c85-4fde-b2f8-ee6cf09c2be4" target="_blank">freeCodeCamp profile</a>.
-                </p>                    
+            <p class="projects__text"> These are some of projects I have made so far. I'm learning everyday so wait for some update! <br />
+                Check also my <a href="https://www.codewars.com/users/kryban93" target="_blank">code wars profile</a> and <a href="https://www.freecodecamp.org/fccbf66c46f-4c85-4fde-b2f8-ee6cf09c2be4" target="_blank">freeCodeCamp profile</a>.
+            </p>                    
                
         </section>        
     </div>
-    <section id="contact">
-        <h2 class="caption">Contact</h2>
-        <form id="form" autocomplete="off" method="post">
+    <section id="contact" class="contact">
+        <h1 class="caption">Contact</h1>
+        <form id="form" autocomplete="off" method="post" class="contact__form">
             <div class="first-name">
                 <input id="firstname" type="text" name="firstname" placeholder="Enter name" required minlength="3">
                 <label class="label" for="firstname">First Name*</label>                        
@@ -84,26 +88,25 @@
                 <textarea id="message" name="message" placeholder="Enter message" required></textarea>
                 <label class="label" for="message">Message *</label>
             </div>
-            <div class="btn-div">
-                <button type="button" class="button btn-send">
+            
+            <button type="button" class="contact__btn__send">
                     <i class="far fa-envelope"></i>SEND!
-                </button>
-            </div>                    
+            </button>
+                               
         </form>
     </section>
-    <footer id="footer">
-        <div class="footer-content">
-            <div>
+    <footer id="footer" class="footer">
+            <div class="footer__content">
                 <h4>Location</h4>                
-                <h5>52°10'13.9"N 20°56'35.0"E</h5>
+                <h5>52°10'13.9"N <br />
+                    20°56'35.0"E</h5>
             </div>        
-            <div>
+            <div class="footer__content">
                 <h4>Email</h4>
                 <h5>kryban1993@gmail.com</h5>
             </div>
-            <div>
-                <h4>Social</h4>
-                
+            <div class="footer__content">                
+                <h4>Social</h4>                
                 <a href="https://www.linkedin.com/in/krystian-banot-76369017a" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
@@ -115,10 +118,8 @@
                 </a>
                 <a href="https://www.freecodecamp.org/fccbf66c46f-4c85-4fde-b2f8-ee6cf09c2be4" target="_blank">
                     <i class="fab fa-free-code-camp"></i>
-                </a>
-                
+                </a>                
             </div>
-        </div>
     </footer>
 
     <script src="script.js"></script>
