@@ -119,7 +119,7 @@ const projects = [
     },
 ];
 
-let skillsList, nav, topOfNav,projectsList,timeline,sendButton,navigatorLogo;
+let skillsList, nav, topOfNav,projectsList,timeline,sendButton,navigatorLogo,navigatorButton,isClicked,navigatorList;
 
 function displaySkillList(skillsObject,header) {    
     let h3 = document.createElement('h3'),
@@ -143,9 +143,7 @@ function displaySkillList(skillsObject,header) {
         icon.classList.add('skills__list__element__icon');
         text.innerHTML = skillsObject[i].name; 
         li.classList.add('skills__list__element');
-        progress.classList.add('skills__list__element__progressbar');
-        percent.innerHTML = `${skillsObject[i].percent}%`;   
-        percent.classList.add('skills__list__element__progressbar__text');
+        progress.classList.add('skills__list__element__progressbar');        
         progressbar.classList.add('skills__list__element__progressbar--covered');
         progressbar.dataset.percent = skillsObject[i].percent;
         
@@ -153,8 +151,7 @@ function displaySkillList(skillsObject,header) {
         li.appendChild(icon);
         li.appendChild(text);
         li.appendChild(progress);        
-        progress.appendChild(progressbar); 
-        progressbar.appendChild(percent);       
+        progress.appendChild(progressbar);        
     }
 }
 
@@ -163,10 +160,9 @@ function displayTimeline(experienceObject,header) {
         activity = document.createElement('h3'),
         content = document.createElement('div');
 
-    container.classList.add('timeline__container');
-    activity.innerHTML = header;
-    activity.classList.add('timeline__header');
-    content.classList.add('timeline__content');
+    container.classList.add('experience__container');
+    activity.innerHTML = header;    
+    content.classList.add('experience__container');
 
     timeline.appendChild(container);
     container.appendChild(activity);
@@ -177,7 +173,7 @@ function displayTimeline(experienceObject,header) {
             positionName = document.createElement('h5'),   
             description = document.createElement('p');
         
-        overlay.classList.add('timeline__content');
+        overlay.classList.add('experience__content');
         companyName.innerHTML = experienceObject[i].company; 
         positionName.innerHTML = experienceObject[i].position;   
         description.innerHTML = experienceObject[i].info;
@@ -223,12 +219,26 @@ function scrollNav() {
     }
 }
 
+function openDropdownNav() {
+    if (!isClicked) {isClicked = true;
+        console.log(isClicked);
+        if (isClicked) {
+            navigatorList.style.setProperty('display','block');
+            navigatorList.classList.add('navigator__list--dropdown'); 
+        }
+    } else {
+            isClicked = false; 
+            navigatorList.style.setProperty('display','none');
+            navigatorList.classList.remove('navigator__list--dropdown'); 
+    }
+}
+
 function progressBarUpdate() {
     const skillsSection = document.querySelector('#skills'),
         progressbars = document.querySelectorAll('.skills__list__element__progressbar--covered');
     
     
-    if (window.scrollY >= skillsSection.offsetTop -nav.offsetHeight) { 
+    if (window.scrollY >= skillsSection.offsetTop - 50) { 
         progressbars.forEach(progressbar => {
             progressbar.style.setProperty('width',`${progressbar.dataset.percent}%`);
         });
@@ -263,7 +273,10 @@ window.addEventListener('DOMContentLoaded', () => {
     skillsList = document.querySelector('.skills__container');
     timeline = document.querySelector('.experience__content');    
     projectsList = document.querySelector('.projects__list');
-    sendButton = document.querySelector('.contact__btn__send');      
+    sendButton = document.querySelector('.contact__btn__send'); 
+    navigatorButton = document.querySelector('.navigator__btn');     
+    isClicked = false;
+    navigatorList = document.querySelector('.navigator__list');
 
     displaySkillList(skillList.skills,"Programming Skills");
     displaySkillList(skillList.lang,"Languages");
@@ -271,7 +284,9 @@ window.addEventListener('DOMContentLoaded', () => {
     displayTimeline(experienceList.education,"Education");
     displayProjects()
     
-    sendButton.addEventListener('click',sendMessage);  
+    sendButton.addEventListener('click',sendMessage); 
+    navigatorButton.addEventListener('click',openDropdownNav);
+
 });
 
 window.addEventListener('scroll',scrollNav);
