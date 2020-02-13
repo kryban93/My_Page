@@ -69,72 +69,72 @@ const experienceList = {
 const projects = [
     {
         name:"Paint",
-        href:"#",
+        href:"https://github.com/kryban93/Paint",
         desc:"Paint made in Canvas" 
     },
     {
         name:"Game",
-        href:"#",
+        href:"https://github.com/kryban93/Simple_game",
         desc:"Tried my best in basic collision detection"  
     },
     {
         name:"Speech synthesizer",
-        href:"#", 
-        desc:"" 
+        href:"https://codepen.io/kryban93/pen/vYOLgWz", 
+        desc:"simple speech synthesizer with few bars" 
     },
     {
         name:"Accordion page",
-        href:"#", 
+        href:"https://codepen.io/kryban93/pen/xxxaGMY", 
         desc:"" 
     },
     {
         name:"Slide-in photos",
-        href:"#", 
-        desc:"" 
+        href:"https://codepen.io/kryban93/pen/jOPWyzb", 
+        desc:"Page with slide-in photos while scroll" 
     },
     {
         name:"JS clock",
-        href:"#", 
+        href:"https://codepen.io/kryban93/pen/QWWqypa", 
         desc:"JS clock with customisation options" 
     },
     {
         name:"Video Player",
-        href:"#", 
+        href:"https://codepen.io/kryban93/pen/MWwKJQj", 
         desc:"Custom Video Player with JS" 
     },
     {
         name:"Local storage",
-        href:"#", 
+        href:"https://codepen.io/kryban93/pen/jOPWVXR", 
         desc:"Usage of Local storage" 
     },
     {
-        name:"Follow allong link",
-        href:"#", 
-        desc:"" 
+        name:"Follow allong nav",
+        href:"https://codepen.io/kryban93/pen/zYGroVq", 
+        desc:"Stripe follow along nav" 
     },
     {
         name:"Mouse move shadow",
-        href:"#", 
-        desc:"" 
+        href:"https://codepen.io/kryban93/pen/NWqxdPm", 
+        desc:"Text shadow depends on mouse move" 
     },
 ];
 
-let skillsList, nav, topOfNav,projectsList,timeline,sendButton,navigatorLogo,navigatorButton,isClicked,navigatorList;
+let skillContainer, nav, topOfNav,projectsList,timeline,sendButton,navigatorLogo,navigatorButton,isClicked,navigatorList;
 
 function displaySkillList(skillsObject,header) {    
     let h3 = document.createElement('h3'),
         list = document.createElement('ul');
     h3.innerHTML = header;  
     list.classList.add('skills__list');
+    h3.classList.add('skills__container__header')
 
-    skillsList.appendChild(h3);
-    skillsList.appendChild(list);
+    skillContainer.appendChild(h3);
+    skillContainer.appendChild(list);
     
     for (let i = 0; i < skillsObject.length; i++) {            
         let li = document.createElement('li'),
             progress = document.createElement('div'),            
-            progressbar = document.createElement('div'),
-            percent = document.createElement('p'),
+            progressbar = document.createElement('div'),            
             icon = document.createElement('i'),
             text = document.createElement('h4');
             
@@ -161,8 +161,9 @@ function displayTimeline(experienceObject,header) {
         content = document.createElement('div');
 
     container.classList.add('experience__container');
-    activity.innerHTML = header;    
-    content.classList.add('experience__container');
+    activity.innerHTML = header; 
+    activity.classList.add('experience__header'); 
+    content.classList.add('experience__content');
 
     timeline.appendChild(container);
     container.appendChild(activity);
@@ -173,11 +174,10 @@ function displayTimeline(experienceObject,header) {
             positionName = document.createElement('h5'),   
             description = document.createElement('p');
         
-        overlay.classList.add('experience__content');
+        overlay.classList.add('experience__content__overlay');
         companyName.innerHTML = experienceObject[i].company; 
         positionName.innerHTML = experienceObject[i].position;   
         description.innerHTML = experienceObject[i].info;
-
 
         content.appendChild(overlay);  
         overlay.appendChild(companyName);
@@ -198,6 +198,7 @@ function displayProjects() {
         mainText.innerHTML = projects[i].name;
         description.innerHTML = projects[i].desc;
         link.setAttribute('href',projects[i].href);
+        link.setAttribute('target','__blank');
 
         projectsList.appendChild(overlay);
         overlay.appendChild(link);
@@ -233,6 +234,15 @@ function openDropdownNav() {
     }
 }
 
+function updateClassesOnResize() {
+    if(window.innerWidth > 1000 ) {  
+            navigatorList.style.setProperty('display','flex');  
+            navigatorList.classList.remove('navigator__list--dropdown');
+            isClicked = false;
+    } else {
+        navigatorList.style.setProperty('display','none');
+    }
+}
 function progressBarUpdate() {
     const skillsSection = document.querySelector('#skills'),
         progressbars = document.querySelectorAll('.skills__list__element__progressbar--covered');
@@ -270,7 +280,7 @@ window.addEventListener('DOMContentLoaded', () => {
     nav = document.querySelector('#navigator');
     navigatorLogo = document.querySelector('.navigator__list__logo');
     topOfNav = nav.offsetTop;
-    skillsList = document.querySelector('.skills__container');
+    skillContainer = document.querySelector('.skills__container');
     timeline = document.querySelector('.experience__content');    
     projectsList = document.querySelector('.projects__list');
     sendButton = document.querySelector('.contact__btn__send'); 
@@ -291,6 +301,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('scroll',scrollNav);
 window.addEventListener('scroll',progressBarUpdate);
+window.addEventListener('resize',updateClassesOnResize);
 
 
 
